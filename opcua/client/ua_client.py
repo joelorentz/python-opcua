@@ -653,6 +653,7 @@ class UaClient(object):
             rv.NodeId = node
             rv.AttributeId = attr
             request.Parameters.NodesToRead.append(rv)
+            request.Parameters.TimestampsToReturn = ua.TimestampsToReturn.Both
         data = self._uasocket.send_request(request)
         response = struct_from_binary(ua.ReadResponse, data)
         response.ResponseHeader.ServiceResult.check()
